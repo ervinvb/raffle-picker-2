@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffle Picker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+        }
+        .winner {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Raffle Picker</h1>
+    <p>Enter participants separated by commas:</p>
+    <textarea id="participants" rows="4" cols="50"></textarea>
+    <br>
+    <button onclick="pickWinner()">Pick a Winner</button>
+    <h2 class="winner" id="winner"></h2>
+
+    <script>
+        function pickWinner() {
+            const participantsInput = document.getElementById('participants').value;
+            const participants = participantsInput.split(',').map(p => p.trim()).filter(p => p);
+
+            if (participants.length === 0) {
+                alert("Please enter at least one participant.");
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * participants.length);
+            const winner = participants[randomIndex];
+            document.getElementById('winner').textContent = `The winner is: ${winner}`;
+        }
+    </script>
+</body>
+</html>
